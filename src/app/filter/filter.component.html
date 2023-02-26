@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select type</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close($event, 'cancel')">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="types">
+    <ion-radio-group (ionChange)="close($event, 'confirm')">
+      <ion-item>
+        <ion-label>All</ion-label>
+        <ion-radio slot="end" [value]="''"></ion-radio>
+      </ion-item>
+      <ion-item *ngFor="let type of types">
+        <ion-label>{{ type.name | titlecase }}</ion-label>
+        <ion-radio slot="end" [value]="type.name"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

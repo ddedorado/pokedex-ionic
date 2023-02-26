@@ -1,8 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Inbox
-    </ion-title>
+
+    <div class="ion-flex ion-align-items-center ion-justify-content-center">
+      <ion-thumbnail class="ion-flex ion-align-items-center">
+          <img class="thumbnail" alt="Pokédex" src="../../assets/pokeball.png" />
+      </ion-thumbnail>
+      <ion-title class="ion-no-padding">Pokédex {{pokemonManagementService.typeSelected | titlecase}}</ion-title>
+    </div>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="openFilter()">
+        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,13 +23,25 @@
   
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
+      <div class="ion-flex ion-align-items-center ion-justify-content-center">
+        <ion-thumbnail class="ion-flex ion-align-items-center">
+            <img class="thumbnail" alt="Pokédex" src="../../assets/pokeball.png" />
+        </ion-thumbnail>
+        <ion-title class="ion-no-padding">Pokédex {{pokemonManagementService.typeSelected | titlecase}}</ion-title>
+      </div>
+      
+      <ion-buttons slot="end">
+        <ion-button (click)="openFilter()">
+          <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
-  </ion-list>
+  <ng-container *ngIf="(pokemonManagementService.pokemons$ | async) as pokemons">
+    <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
+      <ion-list>
+        <app-item *cdkVirtualFor="let pokemon of pokemons; let indexp = index" [pokemon]="pokemon" [index]="indexp+1"></app-item>
+      </ion-list>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
 </ion-content>

@@ -1,0 +1,7 @@
+<ion-item *ngIf="pokemon" [routerLink]="'/pokemon/' + pokemon.name" [detail]="false">
+  <ion-avatar slot="start">
+    <!-- <img [alt]="pokemon.name | titlecase" [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+index+'.png'" /> -->
+    <img [alt]="pokemon.name | titlecase" [src]="'https://img.pokemondb.net/sprites/black-white/normal/'+pokemon.name+'.png'" />
+  </ion-avatar>
+  <ion-label class="ion-text-wrap">{{ pokemon.name | titlecase }}</ion-label>
+</ion-item>

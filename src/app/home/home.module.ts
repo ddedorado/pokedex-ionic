@@ -5,16 +5,23 @@ import { FormsModule } from '@angular/forms';
 
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
-import { MessageComponentModule } from '../message/message.module';
+import { ItemComponentModule } from '../item/item.module';
+import { FilterComponentModule } from '../filter/filter.module';
+import { FilterComponent } from '../filter/filter.component';
+
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MessageComponentModule,
+    ScrollingModule,
+    ItemComponentModule,
+    FilterComponentModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  entryComponents: [FilterComponent],
+  declarations: [HomePage],
 })
 export class HomePageModule {}
